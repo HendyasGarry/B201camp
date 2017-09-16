@@ -7,17 +7,21 @@ using namespace std;
 int main()
 {
     int spawn, screenWidth, screenHeight;
+    float currDuration, duration;
+    bool isDisplayed=1;
     screenWidth=400;
     screenHeight=600;
-    bool isDisplayed=1;
 
     srand((unsigned)time(0));
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML tes!");
-    sf::RectangleShape player, mobil;
+    sf::RectangleShape player, truck;
     sf::Text txt;
+    sf::Clock clk;
+    sf::Time deltaTime;
 
+    duration=5;
     player.setSize(sf::Vector2f(50,80));
-    player.setPosition(200, 300);
+    player.setPosition(200, 500);
     player.setFillColor(sf::Color::Red);
 
     while (window.isOpen())
@@ -31,35 +35,42 @@ int main()
 
         window.clear();
 
-        mobil.move(0,0.2f);
+        deltaTime=clk.restart();
+
+        if(currDuration<duration)
+            currDuration +=deltaTime.asSeconds();
+        else {
+                isDisplayed=1;
+                spawn=rand()%3+1;
+                truck.setSize(sf::Vector2f(100,140));
+                powerUp.setPosition(screenWidth*spawn/3-118,0);
+                powerUp.setFillColor(sf::Color::Green);
+                currDuration=0;
+        }
+        powerUp.move(0,0.1f);
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            player.move(-1, 0);
+            player.move(-0.2f, 0);
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            player.move(1, 0);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            player.move(0, -1);
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            player.move(0, 1);
+            player.move(0.2f, 0);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             window.close();
 
-        window.draw(player);
-        if(mobil.getPosition().y<=screenHeight)
-        {
-            if(player.getGlobalBounds().intersects(mobil.getGlobalBounds())){
-                std::cout<<"BHRUWAK!"<<endl;
+        if(isDisplayed==1){
+            if(player.getGlobalBounds().intersects(powerUp.getGlobalBounds())){
+                std::cout<<"POWER UP"<<endl;
                 isDisplayed=0;
             }
-            else if (isDisplayed)
-                window.draw(mobil);
         }
-        else {
-                spawn=rand()%3+1;
-                mobil.setSize(sf::Vector2f(50,80));
-                mobil.setPosition(screenWidth/spawn+25, 20);
-                mobil.setFillColor(sf::Color::Green);
+        if (powerUp.getPosition().y>screenHeight)
+            isDisplayed=0;
+        else if(powerUp.getPosition().y<=screenHeight)
+        {
+            if (isDisplayed)
+                window.draw(powerUp);
         }
+
+        window.draw(player);
         window.display();
     }
 
