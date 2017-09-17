@@ -6,15 +6,15 @@ using namespace std;
 
 int main()
 {
-    int spawn, screenWidth, screenHeight;
+    int spawn, screenWidth=400, screenHeight=600;
     float currDuration, duration;
-    bool isDisplayed=1;
-    screenWidth=400;
-    screenHeight=600;
+    bool isDisplayed=1, gameOver=0;
 
     srand((unsigned)time(0));
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML tes!");
     sf::RectangleShape player, truck;
+    sf::Font font;
+    font.loadFromFile("font/arial.ttf");
     sf::Text txt;
     sf::Clock clk;
     sf::Time deltaTime;
@@ -43,34 +43,53 @@ int main()
                 isDisplayed=1;
                 spawn=rand()%3+1;
                 truck.setSize(sf::Vector2f(100,140));
-                powerUp.setPosition(screenWidth*spawn/3-118,0);
-                powerUp.setFillColor(sf::Color::Green);
+                truck.setPosition(screenWidth*spawn/3-118,0);
+                truck.setFillColor(sf::Color::Green);
                 currDuration=0;
         }
-        powerUp.move(0,0.1f);
+        truck.move(0,0.1f);
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            player.move(-0.2f, 0);
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            player.move(0.2f, 0);
+        if(!gameOver){
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                player.move(-0.2f, 0);
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                player.move(0.2f, 0);
+        }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             window.close();
 
         if(isDisplayed==1){
-            if(player.getGlobalBounds().intersects(powerUp.getGlobalBounds())){
-                std::cout<<"POWER UP"<<endl;
+            if(player.getGlobalBounds().intersects(truck.getGlobalBounds())){
+                std::cout<<"GAME OVER!"<<endl;
                 isDisplayed=0;
+                player.setPosition(screenWidth,screenHeight);
+                gameOver=1;
             }
         }
-        if (powerUp.getPosition().y>screenHeight)
+        if (truck.getPosition().y>screenHeight)
             isDisplayed=0;
-        else if(powerUp.getPosition().y<=screenHeight)
+        else if(truck.getPosition().y<=screenHeight)
         {
             if (isDisplayed)
-                window.draw(powerUp);
+                window.draw(truck);
         }
 
-        window.draw(player);
+        if(!gameOver)
+            window.draw(player);
+        else {
+            txt.setFont(font);
+            txt.setString("\tGAME OVER!\npress SPACE to retry\n\tor ESC to exit");
+            txt.setCharacterSize(30);
+            txt.setColor(sf::Color::White);
+            txt.Bold;
+            txt.setPosition(screenWidth/2.0f-140, screenHeight/2.0f);
+            window.draw(txt);
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+                gameOver=0;
+                player.setPosition(200, 500);
+            }
+        }
         window.display();
     }
 
