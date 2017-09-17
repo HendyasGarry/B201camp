@@ -37,9 +37,15 @@
 			<Add library="sfml-graphics" />
 			<Add library="sfml-window" />
 			<Add library="sfml-system" />
+			<Add library="sfml-audio" />
 			<Add directory="C:/Program Files/CodeBlocks/SFML-2.4.2/lib" />
 		</Linker>
-		<Unit filename="test.cpp" />
+		<Unit filename="MainMenu.hpp" />
+		<Unit filename="PlayerController.hpp" />
+		<Unit filename="SceneManagement.hpp" />
+		<Unit filename="Spawn.hpp" />
+		<Unit filename="header.hpp" />
+		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

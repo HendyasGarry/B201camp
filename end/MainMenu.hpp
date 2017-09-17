@@ -11,6 +11,10 @@ public:
     int temp;
 
     MainMenu(){
+        start();
+    };
+
+    start(){
         current = 0;
         duration = 0.5f;
         isBlink = false;
@@ -29,6 +33,7 @@ public:
 
         textPlay.setString(valueText);
         textPlay.setCharacterSize(sizeText);
+
 
         textPlayRect = textPlay.getLocalBounds();
         textPlay.setOrigin(textPlayRect.left + textPlayRect.width/2.0f, textPlayRect.top + textPlayRect.height/2.0f);

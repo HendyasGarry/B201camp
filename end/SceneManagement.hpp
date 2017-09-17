@@ -24,6 +24,7 @@ public:
     };
 
     void playGame(){
+        player.isGameOver = false;
         spawn.update();
         player.update();
     };

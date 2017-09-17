@@ -1,13 +1,12 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
-#include "SFML/System.hpp"
 #include <iostream>
 #include <time.h>
 #include <sstream>
 
 using namespace std;
 
-const int SCREEN_WIDTH = 400;
+const int SCREEN_WIDTH = 590;
 const int SCREEN_HEIGHT = 600;
 
 sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "SFML Demo");
