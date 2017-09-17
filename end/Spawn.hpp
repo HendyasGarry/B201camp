@@ -23,7 +23,7 @@ public:
     int medScreen = SCREEN_WIDTH / 2;
     int randEnergy[5] = {medScreen - 15, medScreen - 70, medScreen + 55, medScreen + 150, medScreen - 135};
 
-    float speedEnemyGroup[3] = {0.5f, 0.3f, 0.7f};
+    float speedEnemyGroup[3] = {0.5f, 0.4f, 0.7f};
     float speedEnemy;
 
     float currentEnemy;

@@ -397,7 +397,7 @@
 	"SFML/System.hpp"
 	<iostream>
 
-1505629715 source:d:\camp\end\main.cpp
+1505637913 source:d:\camp\end\main.cpp
 	"header.hpp"
 
 1505529078 d:\camp\end\menu.cpp
@@ -414,12 +414,15 @@
 	"SFML/System.hpp"
 	<iostream>
 
-1505625258 d:\camp\end\header.hpp
+1505636869 d:\camp\end\header.hpp
 	"SFML/Graphics.hpp"
 	"SFML/Audio.hpp"
 	<iostream>
 	<time.h>
+	<windows.h>
+	<fstream>
 	<sstream>
+	"HighScore.hpp"
 	"MainMenu.hpp"
 	"Spawn.hpp"
 	"PlayerController.hpp"
@@ -427,13 +430,13 @@
 
 1505533622 d:\camp\end\menu.hpp
 
-1505629894 d:\camp\end\mainmenu.hpp
+1505637479 d:\camp\end\mainmenu.hpp
 
 1505629382 d:\camp\end\scenemanagement.hpp
 
-1505630357 d:\camp\end\spawn.hpp
+1505637741 d:\camp\end\spawn.hpp
 
-1505630298 d:\camp\end\playercontroller.hpp
+1505637294 d:\camp\end\playercontroller.hpp
 
 1486714798 c:\program files\codeblocks\sfml-2.4.2\include\sfml\audio.hpp
 	<SFML/System.hpp>
@@ -537,4 +540,6 @@
 1486714798 c:\program files\codeblocks\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp
 	<SFML/Audio/Export.hpp>
 	<string>
+
+1505638107 d:\camp\end\highscore.hpp
 

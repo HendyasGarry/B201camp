@@ -2,6 +2,10 @@ class MainMenu{
 public:
     sf::Text textPlay;
     sf::FloatRect textPlayRect;
+
+    sf::Text textHighScore;
+    sf::FloatRect textHighScoreRect;
+
     float current;
     float duration;
     bool isBlink;
@@ -24,8 +28,23 @@ public:
     };
 
     void update(){
+        displayScore();
         display("Press SPACE to start the game", 24);
         animate(sf::Color::White, sf::Color(255, 255, 200, 225));
+    };
+
+    void displayScore(){
+        textHighScore.setFont(font);
+
+        textHighScore.setString(highScore.line);
+        textHighScore.setCharacterSize(24);
+
+
+        textHighScoreRect = textHighScore.getLocalBounds();
+        textHighScore.setOrigin(textHighScoreRect.left + textHighScoreRect.width/2.0f, textHighScoreRect.top + textHighScoreRect.height/2.0f);
+        textHighScore.setPosition(sf::Vector2f(SCREEN_WIDTH/2.0f,SCREEN_HEIGHT/2.0f + 200));
+
+        window.draw(textHighScore);
     };
 
     void display(string valueText, unsigned int sizeText){

@@ -22,11 +22,14 @@ int main() {
                     spawn.start();
                 }
                 else if (event.key.code == sf::Keyboard::Space && player.isGameOver){
-                    scene.index = 0;
-                    textPlay.start();
-
                     player.audioPlayOff();
                     player.isOpen = false;
+
+                    highScore.SaveScore();
+                    highScore.ReadScore();
+
+                    scene.index = 0;
+                    textPlay.start();
                 }
             }
         }

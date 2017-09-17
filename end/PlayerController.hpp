@@ -108,9 +108,11 @@ public:
 
         if(player.getGlobalBounds().intersects(spawn.energy.getGlobalBounds())){
             spawn.energy.setPosition(-100, 0);
-            energy += energyAdd;
-            if(energy > energyMax) energy = energyMax;
-            energySound.play();
+            if(!isGameOver){
+                energy += energyAdd;
+                if(energy > energyMax) energy = energyMax;
+                energySound.play();
+            }
         }
 
         if(player.getGlobalBounds().intersects(spawn.enemy.getGlobalBounds())){
@@ -170,6 +172,10 @@ public:
             textPlay.display("\t  GAME OVER\nPress SPACE to back", 24);
             textPlay.animate(sf::Color::White, sf::Color(255, 255, 200, 225));
             window.draw(textPlay.textPlay);
+
+            if((int)score > highScore.myHighScore){
+                highScore.playerScore = (int)score;
+            }
         }
     };
 

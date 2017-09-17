@@ -2,6 +2,8 @@
 #include "SFML/Audio.hpp"
 #include <iostream>
 #include <time.h>
+#include <windows.h>
+#include <fstream>
 #include <sstream>
 
 using namespace std;
@@ -21,6 +23,10 @@ sf::Sound sound;
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
                                                       ( std::ostringstream() << std::dec << x ) ).str()
+
+
+#include "HighScore.hpp"
+HighScore highScore;
 
 #include "MainMenu.hpp"
 MainMenu textPlay;
