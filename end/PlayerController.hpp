@@ -167,7 +167,7 @@ public:
             isGameOver = true;
             energy = 0;
             spawn.speedScale = 0;
-            textPlay.display("GAME OVER\nPress SPACE to back", 24);
+            textPlay.display("\t  GAME OVER\nPress SPACE to back", 24);
             textPlay.animate(sf::Color::White, sf::Color(255, 255, 200, 225));
             window.draw(textPlay.textPlay);
         }
